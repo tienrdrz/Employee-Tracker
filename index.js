@@ -5,7 +5,14 @@ const inquirer = require('inquirer');
 function displayEmployees () {
     let sql = `SELECT * FROM employee`;
 
-    createDisplayData();
+    db.query(sql, (err, res) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.table(res);
+        createDisplayData();
+    });
 };
 
 //Function to display all departments
@@ -125,7 +132,7 @@ function removeEmployee() {
 
 //We will set up an initial prompt to direct the user
 function createDisplayData () {
-    return inquirer.createPromptModule([
+    return inquirer.prompt([
         {
             type: 'checkbox',
             name: 'choice',
@@ -133,7 +140,7 @@ function createDisplayData () {
             choices: ["View All Employees", "View Departments", "View Roles", "Add an Employee", "Add a Department", "Add a Role", "Remove an Employee", "End Session"  ]
         }
     ])
-    .then (data =>{
+    .then(data =>{
         const choice = JSON.stringify(data.choice);
         validateChoice(choice)
     })
