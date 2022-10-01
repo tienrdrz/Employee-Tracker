@@ -206,21 +206,21 @@ function removeEmployee() {
 
 //Function to guide user to functions
 function validateChoice(choice) {
-    if(choice === '["View All Employees"]') {
+    if(choice === 'View All Employees') {
         displayEmployees();
-    } else if (choice === '["View Departments"]') {
+    } else if (choice === 'View Departments') {
         displayDepartments();
-    } else if (choice === '["View Roles"]') {
+    } else if (choice === 'View Roles') {
         displayRoles();
-    } else if (choice === '["Add an Employee"]') {
+    } else if (choice === 'Add an Employee') {
         addEmployee();
-    } else if (choice === '["Add a Department"]') {
+    } else if (choice === 'Add a Department') {
         addDepartment();
-    } else if (choice === '["Add a Role"]') {
+    } else if (choice === 'Add a Role') {
         addRole();
-    } else if (choice === '["Remove an Employee"]') {
+    } else if (choice === 'Remove an Employee') {
         removeEmployee();
-    } else if (choice === '["End Session"]') {
+    } else if (choice === 'End Session') {
         console.log("Bye");
         process.exit();
     }
@@ -231,14 +231,15 @@ function validateChoice(choice) {
 function createDisplayData () {
     return inquirer.prompt([
         {
-            type: 'checkbox',
+            type: 'list',
             name: 'choice',
             message: 'What are you looking to do?',
             choices: ["View All Employees", "View Departments", "View Roles", "Add an Employee", "Add a Department", "Add a Role", "Remove an Employee", "End Session"  ],
         }
     ])
     .then(data =>{
-        const choice = JSON.stringify(data.choice);
+        const choice = (data.choice);
+        console.log(choice)
         validateChoice(choice)
     })
 }
