@@ -8,8 +8,8 @@ VALUES
 INSERT INTO role (title, salary, department_id)
 VALUES
     ('Personal Shopper', 25, 1),
-    ('Sport Rep', 20, 2)
-    ('Equipment Rep', 21, 3),
+    ('Sport Rep', 20, 2),
+    ('Inventory', 30, 3),
     ('Cashier', 20, 4);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
